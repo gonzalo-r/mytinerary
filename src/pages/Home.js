@@ -37,7 +37,7 @@ return(
        Find your perfect trip,<br/>
        designed by insiders who know and love their cities!
        </p>
-       </article>
+       </article>    
        
 <Hero/>
 <Carrousel/>

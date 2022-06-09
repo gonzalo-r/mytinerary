@@ -5,7 +5,7 @@ import logoAvion1 from "../img/logoAvion1.png"
 
 const Footer = ()=>{
     return(
-        <footer style={{background:"rgb(105, 105, 219)"}}>
+        <footer style={{background:"black"}}>
             <div style={{display:"flex", marginTop:"15px"}}>
             <img src={logoAvion1} style={{height:"10vh", margin:"0 0.5rem"}} alt="logo"/>
             <h3><p>MyTinerary Inc.</p></h3>

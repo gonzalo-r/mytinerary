@@ -1,0 +1,12 @@
+
+.App {
+  background-image: url(https://images-ext-1.discordapp.net/external/MYEEk81-4-0crtiagiqtSZlCMYE5jYTpGf2iBgNOwAI/https/wp-growpro.s3-eu-west-1.amazonaws.com/media/2020/08/viajes-para-aprender-ingles.jpg?width=1132&height=676);
+  min-height: 100vh; 
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0 0;
+}
+ 

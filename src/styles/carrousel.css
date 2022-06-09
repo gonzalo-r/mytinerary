@@ -1,0 +1,71 @@
+#Carrousel { height: 100vh }
+
+body {
+  position: static;
+  /* min-height: 90% !important; */
+  background: black;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+    width: 90% !important;
+    height: 70% !important;
+    margin: auto;
+    padding: 1rem 0.5rem;
+    
+  }
+.swiper-slide {   
+    text-align: center;   
+    font-size: 25px;   
+    background: black;   
+     height: calc((150% - 10px) / 2);     
+    display: -webkit-box;   
+    display: -ms-flexbox;   
+    display: -webkit-flex;   
+    display: flex;   
+    -webkit-box-pack: center;   
+    -ms-flex-pack: center;   
+    -webkit-justify-content: center;   
+    justify-content: center;   
+    -webkit-box-align: center;   
+    -ms-flex-align: center;   
+    -webkit-align-items: center;   
+    align-items: center; 
+    flex-wrap: wrap;
+}
+
+.gallery{
+   /*  margin-top: 2% !important; */
+    /* margin-bottom:2% !important; */
+    width: 100%;
+    height: 80vh;
+    /* margin: auto; */
+  /*   background-image: url(https://images-ext-1.discordapp.net/external/MYEEk81-4-0crtiagiqtSZlCMYE5jYTpGf2iBgNOwAI/https/wp-growpro.s3-eu-west-1.amazonaws.com/media/2020/08/viajes-para-aprender-ingles.jpg?width=1132&height=676);
+     */background-size: cover;
+  background-attachment: fixed;
+ 
+  } 
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+  
+  }
+
+  h2{
+    color: black;
+    
+    height: 10%;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    font-size: 40px;
+  
+  
+  }
+
+

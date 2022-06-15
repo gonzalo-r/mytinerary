@@ -2,7 +2,7 @@
 import React from "react";
 import Carrousel from "../components/Carrousel";
 import Hero from "../components/Hero";
-import home from "../styles/home.css"
+import "../styles/home.css";
 
 
 function Home(){
@@ -24,15 +24,14 @@ function Home(){
     
 return(
     <div>   
-    
       <article className="App-header">
-     <div className="word">
-   <span>w</span>
-   <span>e</span>
-   <span>l</span>
-   <span>c</span>
-   <span>ome!</span>
-    </div> 
+      <div className="word">
+      <span>My</span>
+      <span>Ti</span>
+      <span>ne</span>
+      <span>ra</span>
+      <span>ry</span>
+      </div> 
        <p  style={{fontSize:"35px", padding:"1rem 0.5rem", color:"black", fontStyle: "italic", fontWeight:"500", textAlign:"center" }}>
        Find your perfect trip,<br/>
        designed by insiders who know and love their cities!

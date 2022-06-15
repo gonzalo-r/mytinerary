@@ -43,8 +43,8 @@ export default function Carrousel() {
             }         
         }}       
         >  
-        {datos.map(ciudad=> 
-        <SwiperSlide id="cadaCard">
+        {datos.map((ciudad,index)=> 
+        <SwiperSlide id="cadaCard" key={index}>
             <img src={process.env.PUBLIC_URL + `../imagenes/${ciudad.image}`}/>
             <p style={{color:"black"}}>{ciudad.name}</p>
         </SwiperSlide> 

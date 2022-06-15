@@ -117,6 +117,7 @@ const NavBar = () => {
             }}
           >
             <img src={logo} style={{height:"8vh", margin:"0 0.5rem"}} alt="logo"/>
+          
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

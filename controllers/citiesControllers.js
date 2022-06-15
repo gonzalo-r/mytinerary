@@ -15,5 +15,11 @@ const citiesControllers = {
         })
     },
 
+    getOneCity: async (req, res) =>{
+        let citie = value.params.id
+        let Cities
+        let error = null
+    }
+
 }
 module.exports = citiesControllers

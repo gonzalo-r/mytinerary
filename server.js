@@ -1,13 +1,15 @@
 require("dotenv").config()
 require("./config/database")
+const cors = require("cors")
 const Router = require("./routes/routes")
 const express = require ("express");
-const { get, Server } = require("http");
+const { get, Server, ServerResponse } = require("http");
 const server = express();
 
 const PORT = 4000
 
 //middlewares
+server.use(cors())
 server.use(express.json())
 server.use("/api", Router)
  
@@ -19,5 +21,5 @@ server.get("/cities", (req, res)=>{
 })
 
 server.listen(PORT, ()=>{
-    console.log("SERVIDOR CORRIENDO EN PUERTO: " + PORT)
+    console.log("Server ready on port: " + PORT)
 } )

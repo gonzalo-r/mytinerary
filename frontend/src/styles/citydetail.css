@@ -1,0 +1,52 @@
+#cities{
+   
+    margin:2rem 15rem;
+    height: 10vh !important;
+    text-align: center;
+ 
+}
+
+.detalletitulo{
+background-color:rgba(243, 181, 9, 0.466);
+border: 0.1rem solid black;
+}
+h2{
+    border: 0.1rem solid black;
+    margin-top: 0;
+}
+
+img{
+    height: 300px;
+}
+
+#botonhome{
+    width: 30%;
+    font-size: 15px;
+    color: black;
+    border: 0.1rem solid black;
+    margin:1rem 5rem;
+    background-color:rgba(243, 181, 9, 0.336) ;
+    font-style: oblique;
+}
+@media screen and (max-with:360px){
+    #cities{
+   
+        margin:2rem 2rem;
+        height: 10vh !important;
+        text-align: center;
+     
+    }
+  
+img{
+    height: 100px;
+}
+.detalletitulo{
+    background-color:rgba(243, 181, 9, 0.466);
+    border: 0.1rem solid black;
+    }
+    h2{
+        border: 0.1rem solid black;
+        margin-top: 0;
+        font-size: 10px;
+    }
+}

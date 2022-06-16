@@ -2,6 +2,7 @@ import React from 'react';
  import axios from "axios"; 
 import { useState, useEffect } from 'react'
 import CitiesCards from "../components/CitiesCards";
+import "../styles/cities.css"
 
 export default function PageCities() {
 
@@ -26,15 +27,15 @@ export default function PageCities() {
         <>
         
         <div className='searchfilter'>
-          <h3>Search City</h3>
+          <h1>Search City</h1>
           <input
             type="text"
             placeholder="Search..."
             onChange={(evento) => setSearchTitle(evento.target.value)} />
         </div>
-
-           <div className="container d-flex justify-content-center h-100">
-          <div id="cards" className='row'>
+        <div id="render">
+           <div  className="container d-flex">
+              <div >
           {loading ? ( <h4>Loading ...</h4> ) : (
             cities.filter((card) => {
                 if (searchTitle === "") {
@@ -51,7 +52,7 @@ export default function PageCities() {
                 return console.log(searchTitle)
               } ) 
               .map((item) => 
-              <div id="card" className='col-md-4 container-fluid'   >
+              <div id="allcards"  >
              <CitiesCards 
              title={item.name}
             image={item.image}
@@ -66,7 +67,7 @@ export default function PageCities() {
       
         </div>
      
-       
+        </div>
         </>
       )
 

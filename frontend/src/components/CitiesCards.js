@@ -12,7 +12,7 @@ export default function citiesCards(props) {
     console.log(props)
   return (
     <Card id="detallecard"  sx={{ maxWidth: 345, }}>
-      <CardActionArea id="card">
+      <CardActionArea id="card1">
         <CardMedia
           component="img"
           height="140"

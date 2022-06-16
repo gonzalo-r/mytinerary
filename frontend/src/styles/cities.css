@@ -1,0 +1,26 @@
+#render{
+
+  margin: 1rem;
+  display: flex;
+  flex-direction:column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
+
+
+#allcards{
+    width: 45%;
+    margin: 1rem;
+    padding: 0;
+}
+input{
+    width: 40%;
+    margin: 0 1rem 1rem;
+}
+
+h1{
+    margin: 1rem;
+}
+
+

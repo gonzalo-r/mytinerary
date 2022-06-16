@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import {useEffect } from 'react';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import {Link as LinkRouter} from "react-router-dom";
+import "../styles/citydetail.css";
 
 export default function CityDetail() {
 
@@ -23,7 +24,7 @@ console.log(cities)
                <h2>{cities.country}</h2>
                <img src={process.env.PUBLIC_URL + ` /imagenes/${cities.image}`}/>     
        <LinkRouter  to ={`./Home`}>
-       <Button size="small" color="primary" >
+       <Button id="botonhome"size="small" color="primary" >
         Home
        </Button>
       </LinkRouter>     

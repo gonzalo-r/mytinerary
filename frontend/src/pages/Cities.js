@@ -34,20 +34,22 @@ export default function PageCities() {
             onChange={(evento) => setSearchTitle(evento.target.value)} />
         </div>
         <div id="render">
-           <div  className="container d-flex">
-              <div >
+           <div id="render1" className="container d-flex">
+              <div id="render2">
           {loading ? ( <h4>Loading ...</h4> ) : (
             cities.filter((card) => {
                 if (searchTitle === "") {
                   return card;
                 } else if (
-                  card.name.substring(0, searchTitle.trim().length).toLowerCase() === searchTitle.toLowerCase().trim() 
+                   card.name.substring(0, searchTitle.trim().length).toLowerCase() === searchTitle.trim().toLowerCase()  
+                
                 ) {
                   return card;
                 } else if(
-                  card.name.substring(0, searchTitle.trim().length).toLowerCase() !== searchTitle.toLowerCase().trim()
+                   card.name.substring(0, searchTitle.trim().length).toLowerCase() !== searchTitle.trim().toLowerCase() 
+                
                   ){
-                  return console.log("funciona")
+                    return console.log("funciona") 
                 }
                 return console.log(searchTitle)
               } ) 

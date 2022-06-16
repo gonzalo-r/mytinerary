@@ -23,9 +23,9 @@ console.log(cities)
                <h1 className="detalletitulo"> {cities.name}</h1>
                <h2>{cities.country}</h2>
                <img src={process.env.PUBLIC_URL + ` /imagenes/${cities.image}`}/>     
-       <LinkRouter  to ={`./Home`}>
+       <LinkRouter  to ={"/Cities"}>
        <Button id="botonhome"size="small" color="primary" >
-        Home
+        Cities
        </Button>
       </LinkRouter>     
            </div> 

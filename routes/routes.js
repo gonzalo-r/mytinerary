@@ -10,6 +10,6 @@ Router.route("/cities")
 Router.route("/cities/:id")
 .get(getOneCity)
 .put(modifyCity)
-//.delete(removeCity)
+.delete(removeCity)
 
 module.exports = Router

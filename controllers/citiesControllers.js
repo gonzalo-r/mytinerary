@@ -67,6 +67,23 @@ const citiesControllers = {
         
     })
 
+  },
+
+  removeCity: async (req, res)=>{
+    const id = req.params.id
+    let city
+    let error=null
+    try{
+        city = await Cities.findOneAndDelete({ _id:id})
+
+
+}catch(err){error = err}
+res.json({
+    response: error ? "ERROR" : city,
+    success: error ? false : true,
+    error: error
+ 
+})
   }
 }
 module.exports = citiesControllers

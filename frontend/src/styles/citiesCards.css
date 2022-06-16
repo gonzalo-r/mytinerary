@@ -1,0 +1,52 @@
+#detallecard{
+    margin: 1rem;
+     display:flex !important;
+     flex-wrap: wrap !important; 
+    flex-direction: row!important;
+ 
+    justify-content: center; 
+    height: 100% !important;
+    width: 100% !important;
+    border: 0.2rem solid orange;  
+} 
+#card{
+    width: 45%;
+    height: 60%;
+    border: 0.2rem solid green;  
+    margin: 1rem;
+
+}
+
+.title{
+font-size: 25px!important;
+}
+
+
+#textcard{
+    height: 12%;
+    padding:  0.2rem 0.5rem;
+    border: 0.2rem solid black;
+} 
+
+#more{
+   
+    height:10%;
+    padding: 0.2rem 0;
+    background-color: black; 
+} 
+
+@media screen and (max-with:350px){
+
+    #cards{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    #card{
+        width: 100%;
+    }
+    .title{
+        font-size: 10px ;
+        background-color: blue;
+        }
+}

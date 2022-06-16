@@ -3,10 +3,10 @@ require("./config/database")
 const cors = require("cors")
 const Router = require("./routes/routes")
 const express = require ("express");
-const { get, Server, ServerResponse } = require("http");
+//const { get, Server, ServerResponse } = require("http");
+const PORT = 4000
 const server = express();
 
-const PORT = 4000
 
 //middlewares
 server.use(cors())
@@ -14,7 +14,7 @@ server.use(express.json())
 server.use("/api", Router)
  
 
-server.set("port",PORT)
+//server.set("port",PORT)
 
 server.get("/cities", (req, res)=>{
     res.send("SERVIDOR CREADO")

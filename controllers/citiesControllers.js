@@ -11,7 +11,7 @@ const citiesControllers = {
         res.json({
             response: error ? "ERROR" : { cities },
             success: error ? false : true,
-            error: error
+            error: error,
         })
     },
     

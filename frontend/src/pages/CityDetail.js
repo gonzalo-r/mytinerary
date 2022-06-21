@@ -17,7 +17,7 @@ axios.get(`http://localhost:4000/api/cities/${id}`)
 .then(response =>setCities(response.data.response) )
   
 },[])
-console.log(cities)
+/* console.log(cities) */
   return (
            <div id="cities">    
                <h1 className="detalletitulo"> {cities.name}</h1>

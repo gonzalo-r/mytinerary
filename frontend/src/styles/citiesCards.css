@@ -75,3 +75,43 @@ font-size: 25px!important;
        height: 5px;
    }
 }
+
+@media  (max-width:650px){
+
+    #detallecard{
+        display:flex !important;
+        flex-wrap: wrap !important; 
+       flex-direction: row!important;
+       justify-content: center; 
+       height: 80% !important;
+       width: 100% !important;
+       margin: 0; 
+       
+   } 
+   #card1{
+       width: 80%;
+       height: 60%;
+   }
+   
+   
+   .title{
+   font-size: 25px!important;
+   }
+   
+   
+   #textcard{
+       height: 12%;
+       margin-top: 0.2rem;
+       text-align: center;
+   } 
+   
+   #more{
+      
+       height:8%;
+       padding: 0.1rem 0;
+    
+   } 
+   img{
+       height: 250px;
+   }
+}

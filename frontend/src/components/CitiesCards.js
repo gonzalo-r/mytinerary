@@ -8,8 +8,8 @@ import {Link as LinkRouter} from "react-router-dom";
 import "../styles/citiesCards.css"
 
  
-export default function citiesCards(props) {
-    console.log(props)
+export default function CitiesCards(props) {
+    
   return (
     <Card id="detallecard"  sx={{ maxWidth: 345, }}>
       <CardActionArea id="card1">

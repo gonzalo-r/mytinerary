@@ -13,8 +13,9 @@ export default function PageCities() {
     useEffect(() => {
         const loadPosts = async () => {
           setLoading(true);
-          const response = await axios.get('http://localhost:4000/api/cities'); 
-          setCities(response.data.response.cities);
+
+          axios.get('http://localhost:4000/api/cities')
+          .then(response=> setCities(response.data.response.cities))
           setLoading(false);    
         };
 
@@ -24,35 +25,27 @@ export default function PageCities() {
       console.log(searchTitle)
 
       return (
-        <>
-        
+        <>   
         <div className='searchfilter'>
           <h1>Search City</h1>
           <input
             type="text"
             placeholder="Search..."
-            onChange={(evento) => setSearchTitle(evento.target.value)} />
+            onKeyUp ={(evento) => setSearchTitle(evento.target.value)} />
         </div>
         <div id="render">
            <div id="render1" className="container d-flex">
               <div id="render2">
           {loading ? ( <h4>Loading ...</h4> ) : (
-            cities.filter((card) => {
-                if (searchTitle === "") {
-                  return card;
-                } else if (
-                   card.name.substring(0, searchTitle.trim().length).toLowerCase() === searchTitle.trim().toLowerCase()  
-                
-                ) {
-                  return card;
-                } else if(
-                   card.name.substring(0, searchTitle.trim().length).toLowerCase() !== searchTitle.trim().toLowerCase() 
-                
-                  ){
-                    return console.log("funciona") 
-                }
-                return console.log(searchTitle)
-              } ) 
+            cities.filter((element) => {
+              
+                if (searchTitle !== ""){       
+                    if (  element.name.substring(0, searchTitle.trim().length).toLowerCase() === searchTitle.trim().toLowerCase())                  
+                       {return element; }                                  
+                    } else {
+                     return <h2 className="title h2 text-center textCarr">Ups...<br/>we did not find your city</h2>
+                  }                          
+              })
               .map((item) => 
               <div id="allcards"  >
              <CitiesCards 
@@ -75,5 +68,3 @@ export default function PageCities() {
 
     }
 
-
-    

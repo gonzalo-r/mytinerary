@@ -3,14 +3,11 @@ import React from "react";
 import Carrousel from "../components/Carrousel";
 import Hero from "../components/Hero";
 import "../styles/home.css";
-import {useEffect} from "react";
+
 
 
 function Home(){
     const spans = document.querySelectorAll('.word span');
-
-  
-        
     spans.forEach((span, idx) => {
         span.addEventListener('mousemove', (e) => {
             e.target.classList.add('active');
@@ -25,7 +22,7 @@ function Home(){
         }, 750 * (idx+1))
     });
    
-  
+
     
 return(
     <div>   

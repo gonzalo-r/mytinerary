@@ -3,20 +3,22 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import CitiesCards from "../components/CitiesCards";
 import "../styles/cities.css"
+import{connect} from "react-redux"
+import citiesActions from "../redux/actions/citiesActions"
 
-export default function PageCities() {
+export default function PageCities(props) {
 
     const [loading, setLoading] = useState(false);
-    const [cities, setCities] = useState([]); // trae de la api
+    //const [cities, setCities] = useState([]); // trae de la api
     const [searchTitle, setSearchTitle] = useState(""); //input search
 
     useEffect(() => {
         const loadPosts = async () => {
           setLoading(true);
 
-          axios.get('http://localhost:4000/api/cities')
-          .then(response=> setCities(response.data.response.cities))
-          setLoading(false);    
+          //axios.get('http://localhost:4000/api/cities')
+          //.then(response=> setCities(response.data.response.cities))
+          //setLoading(false);    
         };
 
         loadPosts();
@@ -37,7 +39,7 @@ export default function PageCities() {
            <div id="render1" className="container d-flex">
               <div id="render2">
           {loading ? ( <h4>Loading ...</h4> ) : (
-            cities.filter((element) => {
+            props.filter((element) => {
               
                 if (searchTitle !== ""){       
                     if (  element.name.substring(0, searchTitle.trim().length).toLowerCase() === searchTitle.trim().toLowerCase())                  
@@ -67,4 +69,4 @@ export default function PageCities() {
       )
 
     }
-
+ 

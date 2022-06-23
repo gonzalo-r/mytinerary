@@ -8,6 +8,7 @@ import React, {useEffect} from "react";
 import ScrollToTop from "react-scroll-to-top";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import CityDetail from "./pages/CityDetail";
+import { connect } from 'mongoose';
 
 
 function App() {
@@ -36,5 +37,7 @@ function App() {
     </div>
   );
 }
-
-export default App;
+    const mapDispachToProp = {
+      getCities:citiesActions.getCities
+    }
+export default connect(null,mapDispachToProp)(App);

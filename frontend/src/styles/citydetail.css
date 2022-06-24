@@ -1,8 +1,9 @@
-#cities{
+#cit{
    
     margin:2rem 15rem;
-    height: 10vh !important;
     text-align: center;
+    height: 65vh !important;
+    background-color: aqua;
  
 }
 
@@ -26,6 +27,15 @@ img{
     margin:1rem 5rem;
     background-color:rgba(243, 181, 9, 0.336) ;
     font-style: oblique;
+}
+#itineraries{
+    display: flex;
+    justify-content: space-evenly;
+}
+#titleh2{
+    font-family: 'Anton', sans-serif;
+    color:rgb(243, 181, 9);
+  
 }
 @media screen and (max-with:360px){
     #cities{

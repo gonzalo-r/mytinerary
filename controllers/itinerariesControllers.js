@@ -2,53 +2,107 @@ const Itinerary = require("../models/itinerary")
 
 const itinerariesControllers = {
     getAllItineraries: async (req,res)=>{
-        console.log(req) 
-        const data= await Itinerary.find().populate("cityId")
+        let itineraries
+        let error = null
+        try{
+         itineraries = await Itinerary.find().populate("cityId")
+        }catch (err) {error=err}
         res.json({
-            response: data})
+            response: error ? "ERROR" : itineraries,
+            success: error ? false : true,
+            error: error,
+        })
         
     },
     
-    getCityItineraries: async (req,res)=>{
-
+    getCityItineraries: async (req,res) => {
+        const id = req.params.id;
+        let error = null;
+        let itineraries = [];
         try{
-            const itineraryxCity = await Itinerary.find({cityId:req.query.cityId})
-            res.json({response:itineraryxCity})
-        }catch(error){
-            console.log(error)
+            itineraries = await Itinerary.find({cityId:id})
+        } catch(err){
+            error = err;
+            console.log(error);
         }
-
+        res.json({
+            response: error ? 'Error requesting itineraries data' : itineraries,
+            success: error ? false : true,
+            error: error
+        })
     },
 
     getOneItinerary: async(req,res)=>{
         const id = req.params.id;
-        const data = await Itinerary.findOne({ _id: id }).populate("cityId")
-        res.json({response:data})
+        let itinerary
+        let error = null
+        try{
+      itinerary = await Itinerary.findOne({ _id: id }).populate("cityId")
+        }catch (err) { error = err}
+        res.json({
+            response: error ? "ERROR" : itinerary,
+            success: error ? false : true,
+            error: error
+        })
     },
 
-    uploadItinerary: (req,res)=>{
-        const {image,name,username,details,price,hashtag,duration,cityId} = req.body
-        new Itinerary({image,name,username,details,price,hashtag,duration,cityId}).save()
-        .then((respuesta) => res.json({respuesta}))
+    uploadItinerary: async(req,res)=>{
+        const {name,username,userimage,details,price,duration,hashtag,likes,activities,cityId} = req.body.data
+        let itinerary
+        let error = null
+        try{
+            itinerary = await new Itinerary({
+                name:name,
+                username:username,
+                userimage:userimage,
+                details:details,
+                price:price,
+                duration:duration,
+                hashtag:hashtag,
+                likes:likes,
+                activities:activities,
+                cityId:cityId
+            }).save()
+        }catch(err){error = err}
+         res.json({
+        response: error ? "ERROR" : itinerary,
+        success: error ? false : true,
+        error: error
+    })
 
-         
+
     },
     deleteItinerary: async(req,res)=>{
         const id = req.params.id;
-    await Itinerary.findOneAndDelete({ _id: id })
-    .then((respuesta) =>res.json({respuesta}) )
+        let itinerary
+        let error=null
+        try{
+            itinerary = await Itinerary.findOneAndDelete({ _id: id })
+        }catch(err){error = err}
+        res.json({
+            response: error ? "ERROR" : itinerary,
+            success: error ? false : true,
+            error: error
+         
+        })
 
 
     },
     modifyItinerary: async(req,res)=>{
         const id = req.params.id;
-        const itinerary = req.body;
+        const itinerary = req.body.data;
+        let itinerarydb 
+        let error = null
+        try{
+            itinerarydb = await Itinerary.findOneAndUpdate({ _id: id }, itinerary)
+        }catch(err){error = err}
+        res.json({
+            response: error ? "ERROR" : itinerarydb,
+            success: error ? false : true,
+            error: error
+        })
 
-    await Itinerary.findOneAndUpdate({ _id: id }, itinerary)
-    .then((respuesta) =>res.json({respuesta}) )
     }
-
-
 }
 module.exports = itinerariesControllers
     

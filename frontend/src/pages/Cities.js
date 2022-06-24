@@ -1,35 +1,31 @@
 import React from 'react';
- import axios from "axios"; 
 import { useState, useEffect } from 'react'
 import CitiesCards from "../components/CitiesCards";
 import "../styles/cities.css"
 import{connect} from "react-redux"
 import citiesActions from "../redux/actions/citiesActions"
+import {useSelector, useDispatch} from "react-redux"
 
-export default function PageCities(props) {
+export default function PageCities() {
 
-    const [loading, setLoading] = useState(false);
-    //const [cities, setCities] = useState([]); // trae de la api
     const [searchTitle, setSearchTitle] = useState(""); //input search
+    const dispatch = useDispatch() //trae las acciones
 
     useEffect(() => {
-        const loadPosts = async () => {
-          setLoading(true);
 
-          //axios.get('http://localhost:4000/api/cities')
-          //.then(response=> setCities(response.data.response.cities))
-          //setLoading(false);    
-        };
+            dispatch(citiesActions.getCities()) 
+           dispatch(citiesActions.filterC(searchTitle))
+     
+      }, [searchTitle]);
 
-        loadPosts();
-      }, []);
-      console.log(cities)
-      console.log(searchTitle)
+      const cities=useSelector(store=>store.citiesReducer.cities)
+      const citiesFilter=useSelector(store=>store.citiesReducer.filterCities)
+      //console.log(citiesFilter)
 
       return (
         <>   
-        <div className='searchfilter'>
-          <h1>Search City</h1>
+        <div className='searchfilter' >
+          <h1 >Search City</h1>
           <input
             type="text"
             placeholder="Search..."
@@ -38,35 +34,20 @@ export default function PageCities(props) {
         <div id="render">
            <div id="render1" className="container d-flex">
               <div id="render2">
-          {loading ? ( <h4>Loading ...</h4> ) : (
-            props.filter((element) => {
+                 {citiesFilter.length > 0? ( citiesFilter?.map((item) =>
               
-                if (searchTitle !== ""){       
-                    if (  element.name.substring(0, searchTitle.trim().length).toLowerCase() === searchTitle.trim().toLowerCase())                  
-                       {return element; }                                  
-                    } else {
-                     return <h2 className="title h2 text-center textCarr">Ups...<br/>we did not find your city</h2>
-                  }                          
-              })
-              .map((item) => 
-              <div id="allcards"  >
-             <CitiesCards 
-             title={item.name}
-            image={item.image}
-            id={item._id}
-            key={item._id}
-            />
-          </div>
-
-          ))}
-
-          </div>
-      
-        </div>
-     
+                 <div id="allcards"  >
+                 <CitiesCards 
+                      title={item.name}
+                      image={item.image}
+                      id={item._id}
+                      key={item._id} />  
+                 </div>
+                )):(<h2 className="title h2 text-center textCarr">Ups...<br/>we did not find your city</h2>)}
+              </div>
+           </div> 
         </div>
         </>
       )
-
     }
  

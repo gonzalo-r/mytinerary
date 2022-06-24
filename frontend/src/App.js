@@ -8,8 +8,8 @@ import React, {useEffect} from "react";
 import ScrollToTop from "react-scroll-to-top";
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import CityDetail from "./pages/CityDetail";
-import { connect } from 'mongoose';
-
+import { connect } from 'react-redux';
+import citiesActions from "./redux/actions/citiesActions"
 
 function App() {
   useEffect(()=>{

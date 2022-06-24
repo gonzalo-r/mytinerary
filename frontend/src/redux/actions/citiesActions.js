@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let apiUrl="http:/localhost:4000/"
+let apiUrl="http://localhost:4000/"
 
 const citiesActions={  //es un objeto que tiene adentro dif metodos-->getAllCities, getOneCity
 
@@ -12,6 +12,8 @@ const citiesActions={  //es un objeto que tiene adentro dif metodos-->getAllCiti
             const res=await axios.get(apiUrl+"api/cities")//(el prof "${urlBackend}/api/places/getallplaces") llamar la ruta del backend
         dispatch({type:"GET_CITIES", payload: res.data.response.cities}) //una vez q recibo la info de la api del back hace un dispatch y pasa la info a reducers
         //el dispatch devuelve un objeto con 2 propiedaddes type y payload
+        //console.log(res.data.response.cities)
+
         }catch(error){
             console.log(error)
         }
@@ -21,23 +23,20 @@ const citiesActions={  //es un objeto que tiene adentro dif metodos-->getAllCiti
     getOneCity: (id)=>{
         return async (dispatch, getstate)=>{
             try{
-            const res=await axios.get(apiUrl+"/api/cities/${id}")//(el prof "${urlBackend}/api/places/getOneCity/${id}")
-            dispatch({type:"GET_ONE_CITY", payload:res.data.response.cities})
+            const res=await axios.get(apiUrl+`api/cities/${id}`)
+            dispatch({type:"GET_ONE_CITY", payload:res.data.response})
         }catch(error){
             console.log(error)
         }
         }
     },
 
-    filter: (cities, value)=>{
-        return async (dispatch, getstate)=>{
-            try{
-                dispatch({type:"FILTER", payload:{cities, value}}) 
-            }catch(error){
-                console.log(error)
-            }
+    filterC: (searchTitle)=>{
+        return (dispatch, getstate)=>{
+        
+                dispatch({type:"FILTER_CITY", payload:searchTitle}) 
+          
         }
     }
-
 }
 export default citiesActions

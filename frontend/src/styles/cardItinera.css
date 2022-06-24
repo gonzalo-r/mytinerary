@@ -1,0 +1,14 @@
+.itineraries{
+    width: 100% !important;
+    
+}
+.itineraries img{
+    border-radius: 50% !important;
+    height: 30vh;
+    width: 15vw;
+}
+#cardAction{
+ 
+    justify-content: space-evenly !important;
+    width: 80% !important;
+}

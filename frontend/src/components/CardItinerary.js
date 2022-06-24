@@ -15,7 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
 import "../styles/cardItinera.css";
-
+import usd from "../img/usd.png";
 
 
   
@@ -31,14 +31,19 @@ const CardItinerary = (props) => {
       duration: theme.transitions.duration.shortest,
     }),
   }));
-    
+   
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
- 
-  
-console.log(props)
+     
+  let billete=[];
+  for (let num of props.price){
+   if(num !==0){
+     billete.push(<img src={usd} alt='price' id='usd'/>);
+   };
+  }
+
         return (
         
           <Card className='itineraries' sx={{ maxWidth: 345,textAlign: 'center', display: 'flex', flexDirection: 'column',justifyContent: 'space-between', alignItems: 'center',margin: '1rem' }}>
@@ -90,7 +95,8 @@ console.log(props)
                  <Typography paragraph>USERNAME:  {props.username}</Typography>
                 <Typography paragraph>HASHTAG: {props.hashtag}</Typography>             
                 <Typography paragraph>DURATION:    {props.duration}</Typography>             
-                <Typography paragraph>PRICE: {props.price}</Typography>                
+                <Typography sx={{display: 'flex', flexDirection: 'row',justifyContent: 'space-between', alignItems: 'center'}} paragraph>PRICE: 
+                {billete.map((bille, index) => <span key={index}>{bille}</span>)}</Typography>                
               </CardContent>
             </Collapse>
           </Card>

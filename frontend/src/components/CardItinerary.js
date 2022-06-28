@@ -42,6 +42,7 @@ const CardItinerary = (props) => {
    if(num !==0){
      billete.push(<img src={usd} alt='price' id='usd'/>);
    };
+   console.log(billete)
   }
 
         return (
@@ -95,8 +96,9 @@ const CardItinerary = (props) => {
                  <Typography paragraph>USERNAME:  {props.username}</Typography>
                 <Typography paragraph>HASHTAG: {props.hashtag}</Typography>             
                 <Typography paragraph>DURATION:    {props.duration}</Typography>             
-                <Typography sx={{display: 'flex', flexDirection: 'row',justifyContent: 'space-between', alignItems: 'center'}} paragraph>PRICE: 
-                {billete.map((bille, index) => <span key={index}>{bille}</span>)}</Typography>                
+                <Typography sx={{display: 'flex', flexDirection: 'row',justifyContent: 'space-between', alignItems: 'center'}} paragraph>PRICE: {billete}
+               {/*  {billete.map((bille, index) => <span key={index}>{bille}</span>)} */}
+                </Typography>                
               </CardContent>
             </Collapse>
           </Card>

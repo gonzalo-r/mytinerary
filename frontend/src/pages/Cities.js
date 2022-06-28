@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import CitiesCards from "../components/CitiesCards";
 import "../styles/cities.css"
-import{connect} from "react-redux"
 import citiesActions from "../redux/actions/citiesActions"
 import {useSelector, useDispatch} from "react-redux"
 
@@ -20,7 +19,7 @@ export default function PageCities() {
 
       const cities=useSelector(store=>store.citiesReducer.cities)
       const citiesFilter=useSelector(store=>store.citiesReducer.filterCities)
-      //console.log(citiesFilter)
+      console.log(citiesFilter)
 
       return (
         <>   
@@ -34,7 +33,7 @@ export default function PageCities() {
         <div id="render">
            <div id="render1" className="container d-flex">
               <div id="render2">
-                 {citiesFilter.length > 0? ( citiesFilter?.map((item) =>
+                 {(citiesFilter.length > 0|| cities)? ( citiesFilter.map((item) =>
               
                  <div id="allcards"  >
                  <CitiesCards 

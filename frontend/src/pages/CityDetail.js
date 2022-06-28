@@ -34,7 +34,7 @@ dispatch(citiesActions.getOneCity(id))
 
 const itineraries = useSelector(store=> {return store.itinerariesReducer.itineraries})
 const cities = useSelector(store=> {return store.citiesReducer.oneCity})
-console.log(itineraries)
+
 /* console.log(cities) */
   return (
     <>
@@ -73,7 +73,7 @@ console.log(itineraries)
              userimage= {itinerary.userimage}
              price= {itinerary.price}
              duration= {itinerary.duration}
-             hashtag= {itinerary.hash}
+             hashtag= {itinerary.hashtag}
              likes= {itinerary.likes}
              activities= {itinerary.activities}  />)):(
               <h1 className="rs">We still do not have guides in this city, we are looking for!</h1>

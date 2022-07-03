@@ -10,6 +10,10 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 import CityDetail from "./pages/CityDetail";
 import { connect } from 'react-redux';
 import citiesActions from "./redux/actions/citiesActions"
+import Signin from "./components/Singin"
+import Signup from './components/Singup';
+
+import  { Toaster } from 'react-hot-toast';
 
 function App() {
   useEffect(()=>{
@@ -26,7 +30,12 @@ function App() {
         <Route path="*" element={<Home/>}/>
         <Route path="/Cities" element={<PageCities/>}/>
         <Route path="/CityDetail/:id" element={<CityDetail/>}/>
+        <Route path="/auth/SignIn" element={<Signin/>}/>
+        <Route path="/auth/SignUp" element={<Signup/>}/>
       </Routes>
+      <Toaster
+      position="bottom-center"
+      reverseOrder={true} />
       <Footer/>
       <ScrollToTop
       smooth

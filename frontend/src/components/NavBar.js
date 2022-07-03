@@ -7,17 +7,20 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+
 import{Link as LinkRouter} from "react-router-dom";
 import user1 from "../img/user1.png";
 import logo from "../img/logoAvion1.png";
 
+
 const pages = ['Home', 'Cities'];
-const settings = ['Account', 'Logout'];
+const settings = [ <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}>SignIn</LinkRouter> ,
+<LinkRouter to="/auth/SignUp" style={{textDecoration: "None"}}>SignUp</LinkRouter>,
+<LinkRouter to="/auth/Logout" style={{textDecoration: "None"}}>Logout</LinkRouter>];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -133,13 +136,23 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/3.jpg" /> */}
-              <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
-                
-              </IconButton>
+             
+
+             
+              
+            <IconButton  onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+           
+            
+              
+              
+               </IconButton> 
+              
+              
             </Tooltip>
+
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -159,6 +172,8 @@ const NavBar = () => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
+                  
+        
                 </MenuItem>
               ))}
             </Menu>

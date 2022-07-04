@@ -80,9 +80,9 @@ async function handleSubmit(event) {
      const data={
       firstName: event.currentTarget[0].value, //acomodar segun como llegue la info
       lastName:event.currentTarget[2].value,
-      email: event.currentTarget[8].value,
-      password: event.currentTarget[10].value,
-      image:event.currentTarget[6].value,
+      email: event.currentTarget[6].value,
+      password: event.currentTarget[8].value,
+      image:event.currentTarget[4].value,
       country: country, 
       from: "form-Signup",
      };

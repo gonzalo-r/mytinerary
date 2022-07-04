@@ -25,7 +25,7 @@ const pages = ['Home', 'Cities'];
 const NavBar = () => {
   
   const userlog = useSelector(store => (store.userReducer.user)); 
-  console.log(userlog) 
+console.log(userlog)
   const dispatch = useDispatch();
   const settings = [
  <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}> {!userlog ? "SignIn" : null  }</LinkRouter> ,
@@ -153,14 +153,15 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null
             <Tooltip title="Open settings">
              
 
-            
-              
+           {/*  
+            <Typography>{userlog.userData.firstName}</Typography> */}
             <IconButton  onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            {userlog ?
-            <img src={userlog.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
-           
+            {!userlog ?
+             
+             <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            
             :
-            <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            <img src={userlog.userData.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
             }
             
               

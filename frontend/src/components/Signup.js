@@ -45,17 +45,17 @@ const theme = createTheme();
 
 export default function Signup() {                 //funcion q captura los datos
 
-  const [country,setcountry] = useState("unselected")
-  var countries = ["unselected","Mexico","U.S.A.","Brazil","Argentina","Tailandia","China","Singapur","Japan","Spain","England","France","Italy","Fiyi","Autralia","New Zealand","Marshall Islands","Other Country"]
+  const [country,setcountry] = useState("SelectCountry")
+  var countries = ["SelectCountry","Mexico","U.S.A.","Brazil","Argentina","Tailandia","China","Singapur","Japan","Spain","England","France","Italy","Fiyi","Autralia","New Zealand","Marshall Islands","Other Country"]
   
   const style = {
-   position: 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid blue',
+    border: '2px solid black',
     boxShadow: 24,
     p: 6, 
   };
@@ -129,15 +129,15 @@ async function handleSubmit(event) {
 )}
 </select>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+         {/*  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Select your country.
           </Typography>
-          <Button onClick={handleClose}>Ok</Button>
+          <Button onClick={handleClose}>Ok</Button> */}
         </Box>
       </Modal>
     </div>
   
-{country !== "unselected" ?
+{country !== "SelectCountry" ?
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />

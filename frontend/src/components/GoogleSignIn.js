@@ -16,6 +16,7 @@ export default function GoogleSignIn() {
      const logedUser = {
       email: userObject.email, 
       password:  userObject.sub, 
+      image: userObject.picture,
       from: "google"
     }
     let res = await dispatch(userActions.signInUser(logedUser))

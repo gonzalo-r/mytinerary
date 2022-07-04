@@ -1,8 +1,8 @@
 const initialState = {
     user: null,//inicialmente como nulo cuando el entran datos va a ser un objeto
-        snackbar:{view: false,
+        view: false,
             message: '',
-            success:false}
+            success:false
       
     
 }
@@ -16,6 +16,7 @@ const userReducer = (state = initialState, action) => {
                 ...state,
               user: action.payload,   
             }
+        
         case 'message':
             return {
                 ...state,

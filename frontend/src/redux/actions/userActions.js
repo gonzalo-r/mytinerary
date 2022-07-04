@@ -54,7 +54,7 @@ const userActions ={
 
         return async (dispatch, getState) => {
 
-            await axios.get(apiUrl+"api/auth/SignInToken", {
+             await axios.get(apiUrl+"api/auth/SignInToken", {
                 headers: {                                            // va a pasar por cabecera un dato de tipo autorizacion
                     'Authorization': 'Bearer ' + token                 //bearer es un metodo seguro para autentificacion
                 }
@@ -62,7 +62,8 @@ const userActions ={
                 .then(user => {
                     if (user.data.success) {
                         dispatch({ type: 'user', payload: user.data.response }); //me despacha los datos del usuarios luego de la verificacion
-                        //dispatch({type:'userList'})
+                        console.log(user.data.response)
+                        //dispatch({type:'userList'}
                         dispatch({
                             type: 'message',
                             payload: {
@@ -87,6 +88,7 @@ const userActions ={
                         })
                     localStorage.removeItem('token')
                 })
+                
         }
     }
 

@@ -156,12 +156,15 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null
            {/*  
             <Typography>{userlog.userData.firstName}</Typography> */}
             <IconButton  onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            {!userlog ?
+           { !userlog?
              
              <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
             
-            :
+            :userlog.userData ?
             <img src={userlog.userData.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            
+            :<img src={userlog.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            
             }
             
               

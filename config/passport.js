@@ -1,7 +1,7 @@
 
 const passport = require('passport')
 const jwtStrategy = require('passport-jwt').Strategy //requiero 2 constructores(estrategia y extraer) o clases del paq q instalamos
-const extractJwt = require('passport-jwt').ExtractJwt
+const extractJwt = require('passport-jwt').ExtractJwt 
  
 const User = require('../models/user') //importo mi modelo de  usuario
 

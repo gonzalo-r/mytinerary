@@ -211,13 +211,15 @@ const userControllers = {
             res.json({success:true,
                       response:{
                           id:req.user.id,
-                          firstName: req.user. firstName,
+                          firstName: req.user.firstName,
                          email:req.user.email, 
-                         from:"token"},
-                      message:"Bienvenido nuevamente "+req.user.fullName}) 
+                         from:"token",
+                         image: req.user.image},
+                      message:"Welcome again "+req.user.firstName
+                    }) 
             }else{
                 res.json({success:false,
-                message:"Por favor realiza nuevamente signIn"}) 
+                message:"Please do again signIn"}) 
             } //de aca todo vuelve al actions
         },
 

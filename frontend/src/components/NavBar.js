@@ -11,27 +11,30 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
+import  {useEffect} from "react";
 import{Link as LinkRouter} from "react-router-dom";
 import user1 from "../img/user1.png";
 import logo from "../img/logoAvion1.png";
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import userActions from '../redux/actions/userActions';
 
 
 const pages = ['Home', 'Cities'];
 
-
 const NavBar = () => {
+  
+  const userlog = useSelector(store => (store.userReducer.user)); 
+  console.log(userlog) 
   const dispatch = useDispatch();
-  const settings = [ <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}>SignIn</LinkRouter> ,
-<LinkRouter to="/auth/SignUp" style={{textDecoration: "None"}}>SignUp</LinkRouter>,
+  const settings = [
+ <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}> {!userlog ? "SignIn" : null  }</LinkRouter> ,
+<LinkRouter  to="/auth/SignUp"  style={{textDecoration: "None"}}>{!userlog ? "SignUp" : null  }</LinkRouter>,
 <LinkRouter 
 onClick={()=>{ 
   dispatch(userActions.signOutUser())
 toast("Logout")}}
-to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
+to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null  }</LinkRouter>];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -49,7 +52,7 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
+  }
 
   return (
      <AppBar position="static"  style={{backgroundColor: "black" }} >
@@ -103,8 +106,8 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
                   <Typography sx={{textDecoration: "None"}} textAlign="center">
                     <LinkRouter   to={page} style={{ textDecoration: "None"}}>{page}</LinkRouter>
                     </Typography>
@@ -133,10 +136,10 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
           
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page,index) => (
               <Button
               
-                key={page}
+                key={index}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -150,16 +153,20 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
             <Tooltip title="Open settings">
              
 
-             
+            
               
             <IconButton  onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            {userlog ?
+            <img src={userlog.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
            
+            :
+            <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            }
             
               
               
                </IconButton> 
-              
+
               
             </Tooltip>
 
@@ -181,7 +188,7 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textalign="center">{setting}</Typography>
                   
         
                 </MenuItem>
@@ -193,4 +200,5 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
     </AppBar>
   );
 };
+
 export default NavBar;

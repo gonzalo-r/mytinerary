@@ -22,13 +22,8 @@ const {id} = useParams()
 const dispatch=useDispatch()
 
 useEffect(()=>{
-
-//axios.get(`http://localhost:4000/api/cities/${id}`)
-//.then(response =>setCities(response.data.response) )
 dispatch(itinerariesActions.itinerariesPerCity(id))
 dispatch(citiesActions.getOneCity(id))
-
-  
 },[])
 
 const itineraries = useSelector(store=> {return store.itinerariesReducer.itineraries})

@@ -17,8 +17,10 @@ import{Link as LinkRouter, Navigate, useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import GoogleSignUp from '../components/GoogleSignUp'
+import GoogleSignUp from './GoogleSignUp'
 import userActions from '../redux/actions/userActions';
+import "../styles/signup.css";
+import Modal from '@mui/material/Modal';
 
 function Copyright(props) {
   return (
@@ -35,16 +37,37 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
+
+
+
+
+
 export default function Signup() {                 //funcion q captura los datos
 
-  const [country,setcountry] = useState("")
-  var countries = ["","Mexico","U.S.A.","Brazil","Argentina","Tailandia","China","Singapur","Japan","Spain","England","France","Italy","Fiyi","Autralia","New Zealand","Marshall Islands","Other Country"]
+  const [country,setcountry] = useState("unselected")
+  var countries = ["unselected","Mexico","U.S.A.","Brazil","Argentina","Tailandia","China","Singapur","Japan","Spain","England","France","Italy","Fiyi","Autralia","New Zealand","Marshall Islands","Other Country"]
   
+  const style = {
+   position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid blue',
+    boxShadow: 24,
+    p: 6, 
+  };
+  
+    const [open, setOpen] = React.useState(true);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false)
 
-/*   function selected(event) {
+  function selected(event) {
     console.log(event.target.value)
     setcountry(event.target.value)
-} */
+}
 
   const navigate = useNavigate()
   const dispatch=useDispatch()
@@ -60,7 +83,7 @@ async function handleSubmit(event) {
       email: event.currentTarget[8].value,
       password: event.currentTarget[10].value,
       image:event.currentTarget[6].value,
-      country:"argentina",
+      country: country, 
       from: "form-Signup",
      };
      console.log(data) //chequear q los datos de formu lleguen
@@ -83,10 +106,38 @@ async function handleSubmit(event) {
             return toast.error(res.data.message)
           }
         } }   
-  
-
+       
+         
 
   return (
+    <>
+
+<div >
+      <Button onClick={handleOpen}> <h4>Select country </h4></Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{style}}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example" required onChange={selected}>
+
+{countries.map(pais =>
+    <option >{pais}</option>
+)}
+</select>
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          Select your country.
+          </Typography>
+          <Button onClick={handleClose}>Ok</Button>
+        </Box>
+      </Modal>
+    </div>
+  
+{country !== "unselected" ?
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -128,25 +179,7 @@ async function handleSubmit(event) {
                   autoComplete="family-name"
                 />
               </Grid>
-              {/* <Grid item xs={12} sm={6}>
-             
-              <TextField
-                 
-                 required
-                 fullWidth
-                 label="Country"
-                 autoFocus
-                 select
-                 name="country"
-                 id="country" 
-                 onChange={e=>setcountry(e.target.value)} 
-                 >
-                  {countries.map( oneCountry =>
-                  <option key={oneCountry} value={oneCountry}>{oneCountry}</option>)} 
-                              
-                </TextField>
-               
-              </Grid> */}
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -190,7 +223,7 @@ async function handleSubmit(event) {
             </Button>
           
             <Grid item xs={12}>      
-              <GoogleSignUp />
+              <GoogleSignUp country={country}/>
               
               </Grid>
             <Grid container justifyContent="flex-end">
@@ -204,17 +237,19 @@ async function handleSubmit(event) {
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
-    </ThemeProvider>
+    </ThemeProvider> : <h4> You need to select a country </h4> }
+
+    </>
   );
 }
-/* const mapDispatchToProps={
-   signUpUser: userActions.signUpUser,
-
-}
-const mapStateToProps = (state) =>{
-  return{
-    message: state.userReducer.message
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp); */
+/* 
+sx={{
+  mr: 2,
+  display: { xs: 'none', md: 'flex' },
+  fontFamily: 'monospace',
+  fontWeight: 700,
+  letterSpacing: '.3rem',
+   color: 'inherit', 
+  textDecoration: 'none',
+}}
+ */

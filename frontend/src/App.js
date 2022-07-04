@@ -10,36 +10,31 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 import CityDetail from "./pages/CityDetail";
 import { connect } from 'react-redux';
 import citiesActions from "./redux/actions/citiesActions"
-import Signin from "./components/Singin"
-import Signup from './components/Singup';
+import Signin from "./components/Signin"
+import Signup from './components/Signup';
 import userActions from "./redux/actions/userActions"
 import  { Toaster } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import userReducers from './redux/reducers/userReducers';
-
-
+import { useDispatch} from 'react-redux';
+import {useSelector} from "react-redux";
 
 function App() {
 
-    //const dispatch=useDispatch();
+    const dispatch=useDispatch();
   
-
   useEffect(()=>{
     setTimeout(()=>{
       window.scrollTo(0,0)
     },500)
   },[]);
 
-   /* useEffect(() => {
+   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
       const token = localStorage.getItem("token")
     dispatch(userActions.VerificarToken(token));
     } 
   }, [])
-
-  const us = useSelector(store => {return store.userReducers.userReducer});
- console.log(us)
- */
+ 
+ const userlog = useSelector(store => (store.userReducer.user)); 
   return (
     <div className="App">
       <BrowserRouter>
@@ -48,8 +43,8 @@ function App() {
         <Route path="*" element={<Home/>}/>
         <Route path="/Cities" element={<PageCities/>}/>
         <Route path="/CityDetail/:id" element={<CityDetail/>}/>
-        <Route path="/auth/SignIn" element={<Signin/>}/>
-        <Route path="/auth/SignUp" element={<Signup/>}/>
+        {!userlog && <Route path="/auth/SignIn" element={<Signin/>}/>}
+        {!userlog && <Route path="/auth/SignUp" element={<Signup/>}/>}
       </Routes>
       <Toaster
       position="bottom-center"
@@ -64,7 +59,5 @@ function App() {
     </div>
   );
 }
-const mapDispachToProp = {
-  getCities:citiesActions.getCities
-}
-export default connect(null,mapDispachToProp)(App);
+
+export default App;

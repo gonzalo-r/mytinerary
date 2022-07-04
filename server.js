@@ -12,9 +12,10 @@ const server = express();
 //middlewares
 server.use(cors())
 server.use(express.json())
+server.use(passport.initialize())
 server.use("/api", Router)
 server.use("/api", itinerariesRouter)
-server.use(passport.initialize())
+
 
 
 

@@ -178,7 +178,7 @@ const userControllers = {
                                 id: oldUser._id,
                                 email: oldUser.email,
                                 firstName: oldUser.firstName,
-                                //image: oldUser.image,
+                                image: oldUser.image,
                                 from: oldUser.from}
                             await oldUser.save()
                             const token = jwt.sign({...userData},process.env.SECRETKEY,{expiresIn:60*60*24}) //guardo en el local
@@ -194,7 +194,7 @@ const userControllers = {
                                 message: `verify your mail or password!`})
                         }
                     }
-                }
+                } return res
             } catch (error) {
                 console.log(error)
                 res.json({

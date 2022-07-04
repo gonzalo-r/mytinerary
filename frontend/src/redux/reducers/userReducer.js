@@ -1,19 +1,20 @@
 const initialState = {
     user: null,//inicialmente como nulo cuando el entran datos va a ser un objeto
-   
-        view: false,
-        message: '',
-        success:false
+        snackbar:{view: false,
+            message: '',
+            success:false}
+      
     
 }
 
 const userReducer = (state = initialState, action) => {
-   
+ 
+
     switch (action.type) {
         case 'user':
             return {
                 ...state,
-                user: action.payload,   
+              user: action.payload,   
             }
         case 'message':
             return {
@@ -26,8 +27,9 @@ const userReducer = (state = initialState, action) => {
            
         default:
             return state
+           
     }
-    
+
 }
 
 export default userReducer

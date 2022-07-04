@@ -17,7 +17,8 @@ import { useState, useEffect,} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import toast, { Toaster } from 'react-hot-toast';
 import userActions from '../redux/actions/userActions';
-import GoogleSingIn from "./GoogleSingIn";
+import GoogleSingIn from "./GoogleSignIn";
+
 
 function Copyright(props) {
   return (
@@ -34,6 +35,8 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
+
 export default function Signin() {
 
 /*   const navigate = useNavigate(); */
@@ -48,7 +51,10 @@ export default function Signin() {
     console.log(dataSingin) //chequear q los datos de formu lleguen
     let res= await dispatch(userActions.signInUser(dataSingin)); //await 
     console.log(res)
-    console.log(res.data.success) 
+    console.log(res.data.success)
+
+  
+
   if(res.data.success){  
     
       toast.success( res.data.message)
@@ -61,10 +67,13 @@ export default function Signin() {
          }else {  */
            return toast.error(res.data.message)
         /*  } */
-       } }   
- 
+       } } 
+
+      
 
   return (
+   
+
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -136,5 +145,6 @@ export default function Signin() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    
   );
 }

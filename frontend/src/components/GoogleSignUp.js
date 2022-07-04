@@ -5,8 +5,8 @@ import userActions from '../redux/actions/userActions';
 import toast, { Toaster } from 'react-hot-toast';
 
 
-export default function GoogleSingUp() {
-   
+export default function GoogleSingUp(props) {
+   console.log(props)
     const dispatch = useDispatch();
 
     async function handleCallbackResponse(response) {
@@ -20,7 +20,7 @@ export default function GoogleSingUp() {
             image: userObject.picture, 
             email: userObject.email, 
             password: userObject.sub, 
-            country: "google",
+            country: props.country,
             from: 'google'
         }
         let res = await dispatch(userActions.signUpUser(data))

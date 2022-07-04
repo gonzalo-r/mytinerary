@@ -24,20 +24,17 @@ const userActions ={
         return async (dispatch, getState) =>{
             
             const user= await axios.post(apiUrl+"api/auth/SignIn", {dataSingin})
-            console.log(user)
+            console.log(user.data.response.userData)
 
             if(user.data.success){
                 localStorage.setItem("token", user.data.response.token)
-                dispatch({type:"user", payload:user.data.response.userData});//userData viene del controlador
+                //dispatch({type:"user", payload:user.data.response.userData});//userData viene del controlador
                 //dispatch({type:"userList"})
             }
            dispatch({
-               type:"message",
-               payload:{
-                   view:true,
-                   message:user.data.message,
-                   success:user.data.success
-               }
+               type:"user",
+               payload:user.data.response.userData
+          
            });
            return user
         }

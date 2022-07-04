@@ -20,14 +20,16 @@ const userActions ={
         }
     },
 
-    signInUser:(logerUser)=>{
+    signInUser:(dataSingin)=>{
         return async (dispatch, getState) =>{
+            
+            const user= await axios.post(apiUrl+"api/auth/SignIn", {dataSingin})
+            console.log(user)
 
-            const user= await axios.post(apiUrl+"api/auth/SignIn", {logerUser})
             if(user.data.success){
                 localStorage.setItem("token", user.data.response.token)
-                dispatch({type:"user", payload:user.data.response.userData});
-                dispatch({type:"userList"})
+                dispatch({type:"user", payload:user.data.response.userData});//userData viene del controlador
+                //dispatch({type:"userList"})
             }
            dispatch({
                type:"message",
@@ -37,16 +39,17 @@ const userActions ={
                    success:user.data.success
                }
            });
+           return user
         }
     },
 
-    signOutUser: (closeuser) => {
+    signOutUser: () => {
         return async (dispatch, getState) => {
-            const user = await axios.post(apiUrl+"api/auth/SignOut", { closeuser })
+        //const user = await axios.post(apiUrl+"api/auth/SignOut", { closeuser })
             localStorage.removeItem('token')
             dispatch({ type: 'user', payload: null });
-            dispatch({type:'userList'})
-            return user
+          //  dispatch({type:'userList'})
+           // return user
         }
         
     },
@@ -55,14 +58,14 @@ const userActions ={
         return async (dispatch, getState) => {
 
             await axios.get(apiUrl+"api/auth/SignInToken", {
-                headers: {
-                    'Authorization': 'Bearer ' + token
+                headers: {                                            // va a pasar por cabecera un dato de tipo autorizacion
+                    'Authorization': 'Bearer ' + token                 //bearer es un metodo seguro para autentificacion
                 }
             })
                 .then(user => {
                     if (user.data.success) {
-                        dispatch({ type: 'user', payload: user.data.response });
-                        dispatch({type:'userList'})
+                        dispatch({ type: 'user', payload: user.data.response }); //me despacha los datos del usuarios luego de la verificacion
+                        //dispatch({type:'userList'})
                         dispatch({
                             type: 'message',
                             payload: {
@@ -76,12 +79,12 @@ const userActions ={
                     }
                 }
                 ).catch(error => {
-                    if (error.response.status === 401)
+                    if (error.response.status === 401) //error 401 el token estaba pero no era correcto o expiro, por lo q sea
                         dispatch({
                             type: 'message',
                             payload: {
                                 view: true,
-                                message: "Por favor realize nuevamente su signIn", //pasar a ingles
+                                message: "Por favor realize nuevamente su signIn", //pasar a ingles o su sesion expiro, singin nuevamente
                                 success: false
                             }
                         })

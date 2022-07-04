@@ -13,6 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import{Link as LinkRouter} from "react-router-dom";
+import { useState, useEffect,} from 'react';
+import {useSelector, useDispatch} from "react-redux";
+import toast, { Toaster } from 'react-hot-toast';
+import userActions from '../redux/actions/userActions';
+import GoogleSingIn from "./GoogleSingIn";
 
 function Copyright(props) {
   return (
@@ -30,14 +35,34 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Signin() {
-  const handleSubmit = (event) => {
+
+/*   const navigate = useNavigate(); */
+  const dispatch = useDispatch();
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const dataSingin = {
+      email: event.currentTarget[0].value,
+      password: event.currentTarget[2].value,
+    };
+    console.log(dataSingin) //chequear q los datos de formu lleguen
+    let res= await dispatch(userActions.signInUser(dataSingin)); //await 
+    console.log(res)
+    console.log(res.data.success) 
+  if(res.data.success){  
+    
+      toast.success( res.data.message)
+     /*  navigate("/createdUser",{replace:true}) */ //se puede poner false?
+   
+  }  else{
+        /* if(res.data.response){       
+             res.data.response.map(oneMsg =>{
+           toast.error(oneMsg.message)  })             
+         }else {  */
+           return toast.error(res.data.message)
+        /*  } */
+       } }   
+ 
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,14 +115,10 @@ export default function Signin() {
             >
               Sign In
             </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In Google 
-            </Button>
+            <Grid item xs={12}>      
+              <GoogleSingIn />
+              
+              </Grid>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

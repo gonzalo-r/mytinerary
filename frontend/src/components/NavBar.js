@@ -15,14 +15,24 @@ import MenuItem from '@mui/material/MenuItem';
 import{Link as LinkRouter} from "react-router-dom";
 import user1 from "../img/user1.png";
 import logo from "../img/logoAvion1.png";
+import { useDispatch, useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
+import userActions from '../redux/actions/userActions';
 
 
 const pages = ['Home', 'Cities'];
-const settings = [ <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}>SignIn</LinkRouter> ,
-<LinkRouter to="/auth/SignUp" style={{textDecoration: "None"}}>SignUp</LinkRouter>,
-<LinkRouter to="/auth/Logout" style={{textDecoration: "None"}}>Logout</LinkRouter>];
+
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const settings = [ <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}>SignIn</LinkRouter> ,
+<LinkRouter to="/auth/SignUp" style={{textDecoration: "None"}}>SignUp</LinkRouter>,
+<LinkRouter 
+onClick={()=>{ 
+  dispatch(userActions.signOutUser())
+toast("Logout")}}
+to="/auth/signOut"   style={{textDecoration: "None"}}>Logout</LinkRouter>];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

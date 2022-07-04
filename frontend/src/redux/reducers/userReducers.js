@@ -1,5 +1,5 @@
 const initialState = {
-    user: null,
+    user: null,//inicialmente como nulo cuando el entran datos va a ser un objeto
    
         view: false,
         message: '',

@@ -13,26 +13,28 @@ Router.route("/cities/:id")
 .delete(removeCity)
 
 //Users
-const  {signInUser,signUpUser} = require('../controllers/userControllers')
+const  {signInUser,signUpUser, verificarToken, signOutUser, verifyEmail } = require('../controllers/userControllers')
 
- //const passport = require("../config/passport")
+ const passport = require("../config/passport")
 
 const validator = require("../config/validator")
 
+//Router users
+
 Router.route('/auth/SignUp')
-.post(validator,signUpUser) //le paso desde actions user signUpUser
+.post(validator,signUpUser) //si pasa el validador sigue a signUpUser(el c ontrolador)le paso desde actions user signUpUser
 
 Router.route('/auth/SignIn')
 .post(signInUser)
 
-//Router.route("/auth/signOut")
-//.post(signOutUser)
+Router.route("/auth/signOut")
+.post(signOutUser)
 
-//Router.route("/verify/:uniqueString")   //recibe el link del usuario y llama con el get a funcion de verificacion
-//.get(verifyEmail)   
+Router.route("/verify/:uniqueString")   //recibe el link del usuario y llama con el get a funcion de verificacion
+.get(verifyEmail)   
 
-//Router.route("/auth/signInToken")
-//.get(passport.authenticate("jwt",{session: false}),checktoken)
+Router.route("/auth/signInToken")
+.get(passport.authenticate("jwt",{session: false}), verificarToken)  //si pasa el autentificador para a verificar el token
 
 
 

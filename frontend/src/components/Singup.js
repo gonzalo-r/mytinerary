@@ -41,15 +41,14 @@ export default function Signup() {                 //funcion q captura los datos
   var countries = ["","Mexico","U.S.A.","Brazil","Argentina","Tailandia","China","Singapur","Japan","Spain","England","France","Italy","Fiyi","Autralia","New Zealand","Marshall Islands","Other Country"]
   
 
-  function selected(event) {
+/*   function selected(event) {
     console.log(event.target.value)
     setcountry(event.target.value)
-}
+} */
+
   const navigate = useNavigate()
   const dispatch=useDispatch()
 
-//no tom el async deberia estar en rosa
- // const handleSubmit = async (event) => {
   
 async function handleSubmit(event) {
     event.preventDefault();
@@ -129,7 +128,7 @@ async function handleSubmit(event) {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
              
               <TextField
                  
@@ -142,12 +141,12 @@ async function handleSubmit(event) {
                  id="country" 
                  onChange={e=>setcountry(e.target.value)} 
                  >
-                 {countries.map( oneCountry =>
-                  <option key={oneCountry} value={oneCountry}>{oneCountry}</option>)}
+                  {countries.map( oneCountry =>
+                  <option key={oneCountry} value={oneCountry}>{oneCountry}</option>)} 
                               
                 </TextField>
                
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} sm={6}>
                 <TextField
                   required

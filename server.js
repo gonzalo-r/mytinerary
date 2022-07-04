@@ -1,6 +1,7 @@
 require("dotenv").config()
 require("./config/database")
 const cors = require("cors")
+const passport = require("passport")
 const Router = require("./routes/routes")
 const itinerariesRouter = require("./routes/itinerariesroutes")
 const express = require ("express");
@@ -13,7 +14,7 @@ server.use(cors())
 server.use(express.json())
 server.use("/api", Router)
 server.use("/api", itinerariesRouter)
- 
+server.use(passport.initialize())
 
 
 

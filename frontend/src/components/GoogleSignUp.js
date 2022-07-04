@@ -9,13 +9,8 @@ export default function GoogleSingUp() {
    
     const dispatch = useDispatch();
 
-
-   
-
-
     async function handleCallbackResponse(response) {
 
-       
         console.log(response.credential);
         let userObject = jwt_decode(response.credential);
         console.log(userObject);
@@ -28,8 +23,8 @@ export default function GoogleSingUp() {
             country: "google",
             from: 'google'
         }
-        let res = dispatch(userActions.signUpUser(data))
-        console.log(data)
+        let res = await dispatch(userActions.signUpUser(data))
+        console.log(res.data)
         
         
         if(res.data.success){

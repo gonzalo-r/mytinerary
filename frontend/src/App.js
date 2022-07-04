@@ -12,16 +12,34 @@ import { connect } from 'react-redux';
 import citiesActions from "./redux/actions/citiesActions"
 import Signin from "./components/Singin"
 import Signup from './components/Singup';
-
+import userActions from "./redux/actions/userActions"
 import  { Toaster } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import userReducers from './redux/reducers/userReducers';
+
+
 
 function App() {
+
+    //const dispatch=useDispatch();
+  
+
   useEffect(()=>{
     setTimeout(()=>{
       window.scrollTo(0,0)
     },500)
-  },[])
+  },[]);
 
+   /* useEffect(() => {
+    if (localStorage.getItem('token') !== null) {
+      const token = localStorage.getItem("token")
+    dispatch(userActions.VerificarToken(token));
+    } 
+  }, [])
+
+  const us = useSelector(store => {return store.userReducers.userReducer});
+ console.log(us)
+ */
   return (
     <div className="App">
       <BrowserRouter>
@@ -46,7 +64,7 @@ function App() {
     </div>
   );
 }
-    const mapDispachToProp = {
-      getCities:citiesActions.getCities
-    }
+const mapDispachToProp = {
+  getCities:citiesActions.getCities
+}
 export default connect(null,mapDispachToProp)(App);

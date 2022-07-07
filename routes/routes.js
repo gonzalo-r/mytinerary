@@ -1,5 +1,7 @@
 const Router = require("express").Router();
 
+
+//Cities
 const citiesControllers = require("../controllers/citiesControllers");
 const {getCities, getOneCity, addCity, modifyCity, removeCity} = citiesControllers
 
@@ -12,8 +14,9 @@ Router.route("/cities/:id")
 .put(modifyCity)
 .delete(removeCity)
 
+
 //Users
-const  {signInUser,signUpUser, verificarToken, signOutUser, verifyEmail } = require('../controllers/userControllers')
+const  {signInUser,signUpUser, verificarToken, verifyEmail } = require('../controllers/userControllers') //, signOutUser
 
  const passport = require("../config/passport")
 
@@ -27,8 +30,8 @@ Router.route('/auth/SignUp')
 Router.route('/auth/SignIn')
 .post(signInUser)
 
-Router.route("/auth/signOut")
-.post(signOutUser)
+/* Router.route("/auth/signOut")
+.post(signOutUser) */
 
 Router.route("/verify/:uniqueString")   //recibe el link del usuario y llama con el get a funcion de verificacion
 .get(verifyEmail)   

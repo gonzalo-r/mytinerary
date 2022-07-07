@@ -45,8 +45,7 @@ const userActions ={
         //const user = await axios.post(apiUrl+"api/auth/SignOut", { closeuser })
             localStorage.removeItem('token')
             dispatch({ type: 'user', payload: null });
-          //  dispatch({type:'userList'})
-           // return user
+          
         }
         
     },
@@ -62,7 +61,7 @@ const userActions ={
                 .then(user => {
                     if (user.data.success) {
                         dispatch({ type: 'user', payload: user.data.response }); //me despacha los datos del usuarios luego de la verificacion
-                        console.log(user.data.response)
+                        console.log(user.data)
                         //dispatch({type:'userList'}
                         dispatch({
                             type: 'message',
@@ -86,6 +85,7 @@ const userActions ={
                                 success: false
                             }
                         })
+                       
                     localStorage.removeItem('token')
                 })
                 

@@ -1,9 +1,9 @@
 const initialState = {
     user: null,//inicialmente como nulo cuando el entran datos va a ser un objeto
-        view: false,
+    msn:  {  view: false,
             message: '',
             success:false
-      
+        },
     
 }
 
@@ -20,10 +20,11 @@ const userReducer = (state = initialState, action) => {
         case 'message':
             return {
                 ...state,
-                view:  action.payload.view, 
+                msn: action.payload,
+                /* view:  action.payload.view, 
                 message: action.payload.message, 
                 success: action.payload.success,   
-                
+                 */
             }
            
         default:

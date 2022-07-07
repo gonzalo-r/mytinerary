@@ -34,7 +34,8 @@ function App() {
     } 
   }, [])
  
- const userlog = useSelector(store => (store.userReducer.user)); 
+/*  const userlog = useSelector(store => (store.userReducer.user)); */
+
 
 
   return (

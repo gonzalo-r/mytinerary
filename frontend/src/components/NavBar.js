@@ -25,7 +25,8 @@ const pages = ['Home', 'Cities'];
 const NavBar = () => {
   
   const userlog = useSelector(store => (store.userReducer.user)); 
-console.log(userlog)
+  const userreturn = useSelector(store => (store.userReducer.msn));
+
   const dispatch = useDispatch();
   const settings = [
  <LinkRouter to="/auth/SignIn" style={{textDecoration: "None"}}> {!userlog ? "SignIn" : null  }</LinkRouter> ,
@@ -35,6 +36,8 @@ onClick={()=>{
   dispatch(userActions.signOutUser())
 toast("Logout")}}
 to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null  }</LinkRouter>];
+
+
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -53,6 +56,18 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   }
+
+  console.log(userreturn)
+console.log(userlog)
+//mensaje al refresh pag despues de verificar token
+ if(userreturn.message !== "" ){
+        if(userreturn.success){
+            toast.success(userreturn.message);
+        }else{
+          if(userreturn.message !== "" && userlog == null && userreturn.success){
+            toast.error(userreturn.message);}
+              }
+};
 
   return (
      <AppBar position="static"  style={{backgroundColor: "black" }} >
@@ -141,7 +156,7 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null
               
                 key={index}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 1, color: 'white', display: 'block', fontSize:"15px" }}
               >
                 <LinkRouter to={page} style={{color: 'white', textDecoration: "None"}}>{page}</LinkRouter>
               </Button>
@@ -150,20 +165,46 @@ to="/auth/signOut"   style={{textDecoration: "None"}}>{userlog ? "Logout" : null
 
           <Box sx={{ flexGrow: 0 }}>
 
+          <Typography 
+          variant="h6"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              fontFamily: 'monospace',
+              fontWeight: 500,
+              color: 'inherit',
+              textDecoration: 'none',
+            }}>
+              {!userlog?  
+               <Typography 
+               variant="h6"
+                 noWrap
+                 component="a"
+                 href=""
+                 sx={{
+                   fontFamily: 'monospace',
+                   fontWeight: 500,
+                   color: 'inherit',
+                   textDecoration: 'none',
+                 }}>{""}</Typography>      
+
+             :userlog.userData? 
+             userlog.userData.firstName 
+             : userlog.firstName}
+             </Typography>
+
             <Tooltip title="Open settings">
              
-
-           {/*  
-            <Typography>{userlog.userData.firstName}</Typography> */}
             <IconButton  onClick={handleOpenUserMenu} sx={{ p: 0 }}>
            { !userlog?
              
              <img src={user1} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
             
             :userlog.userData ?
-            <img src={userlog.userData.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            <img src={userlog.userData.image} style={{height:"6vh", margin:"0 0.5rem", borderRadius:"50%"}} alt="logo"/>
             
-            :<img src={userlog.image} style={{height:"6vh", margin:"0 0.5rem"}} alt="logo"/>
+            :<img src={userlog.image} style={{height:"6vh", margin:"0 0.5rem", borderRadius:"50%"}} alt="logo"/>
             
             }
             

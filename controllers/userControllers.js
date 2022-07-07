@@ -223,7 +223,7 @@ const userControllers = {
             } //de aca todo vuelve al actions
         },
 
-        signOutUser: async (req, res) => {
+        /*  signOutUser: async (req, res) => {
        
             const email = req.body.closeuser
             const user = await User.findOne({ email })
@@ -232,7 +232,7 @@ const userControllers = {
             await user.save()
             
             res.json({success:true})
-        },
+        },  */
 
         verifyEmail: async (req, res) => {
 
